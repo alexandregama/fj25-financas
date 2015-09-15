@@ -1,4 +1,4 @@
-package br.com.caelum.financas.modelo.estado;
+package br.com.caelum.financas.modelo.estado.transiente;
 
 import javax.persistence.EntityManager;
 

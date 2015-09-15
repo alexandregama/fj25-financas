@@ -1,4 +1,4 @@
-package br.com.caelum.financas.modelo.estado;
+package br.com.caelum.financas.modelo.estado.transiente;
 
 import javax.persistence.EntityManager;
 
@@ -6,21 +6,13 @@ import br.com.caelum.financas.infra.JPAUtil;
 import br.com.caelum.financas.modelo.Conta;
 
 /*
-  Neste teste persistimos uma conta de forma simples, com somente:
-  - Criamos uma conta
-  - Persistimos a conta pelo manager
-  - O Hibernate gera um insert:
-  
-Hibernate: 
-    insert 
-    into
-        Conta
-        (agencia, numero, titular) 
-    values
-        (?, ?, ?)  
+ 
+ Neste teste persistimos um objeto com o mesmo manager mas com transacoes diferentes
+ Aqui é executado um insert e em seguida um update pelo Hibernate
+ 
  */
 
-public class TestaTransientComSomenteUmPersistent {
+public class TestaTransientComDuasTransactions {
 
 	public static void main(String[] args) {
 		EntityManager manager = new JPAUtil().getEntityManager();
@@ -28,6 +20,10 @@ public class TestaTransientComSomenteUmPersistent {
 		
 		manager.getTransaction().begin();
 		manager.persist(conta);
+		manager.getTransaction().commit();
+		
+		manager.getTransaction().begin();
+		conta.setTitular("Gama");
 		manager.getTransaction().commit();
 		
 		manager.close();
