@@ -1,4 +1,4 @@
-package br.com.caelum.financas.modelo.crud;
+package br.com.caelum.financas.modelo.crud.conta;
 
 import javax.persistence.EntityManager;
 
@@ -6,21 +6,21 @@ import br.com.caelum.financas.dao.ContaDao;
 import br.com.caelum.financas.infra.JPAUtil;
 import br.com.caelum.financas.modelo.Conta;
 
-public class TestaBuscaConta {
+public class TestaEdicaoConta {
 
 	public static void main(String[] args) {
-		EntityManager manager = new JPAUtil().getEntityManager();
-		
-		ContaDao dao = new ContaDao(manager);
-		
 		Conta novaConta = new Conta("Alexandre Gama", "1234567", "123");
+		
+		EntityManager manager = new JPAUtil().getEntityManager();
+		ContaDao dao = new ContaDao(manager);
 		manager.getTransaction().begin();
 		dao.adiciona(novaConta);
-		manager.getTransaction().commit();
 		
 		Conta conta = dao.buscaPorId(novaConta.getId());
+		conta.setTitular("Gama");
+		manager.merge(conta);
 		
-		System.out.println(conta);
+		manager.getTransaction().commit();
 		manager.close();
 	}
 	
