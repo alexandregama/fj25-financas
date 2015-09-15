@@ -22,7 +22,18 @@ public class Conta {
 	@Column(name = "agencia", nullable = false)
 	private String agencia;
 
+	// Hibernate eyes only
+	Conta() {
+	}
+	
 	public Conta(String titular, String numero, String agencia) {
+		this.titular = titular;
+		this.numero = numero;
+		this.agencia = agencia;
+	}
+	
+	public Conta(Long id, String titular, String numero, String agencia) {
+		this.id = id;
 		this.titular = titular;
 		this.numero = numero;
 		this.agencia = agencia;
