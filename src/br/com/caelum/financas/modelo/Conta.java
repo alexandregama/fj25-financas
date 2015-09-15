@@ -21,7 +21,7 @@ public class Conta {
 
 	@Column(name = "agencia", nullable = false)
 	private String agencia;
-
+	
 	// Hibernate eyes only
 	Conta() {
 	}

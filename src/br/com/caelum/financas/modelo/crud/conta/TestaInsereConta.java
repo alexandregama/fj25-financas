@@ -1,4 +1,4 @@
-package br.com.caelum.financas.modelo.teste;
+package br.com.caelum.financas.modelo.crud.conta;
 
 import javax.persistence.EntityManager;
 
