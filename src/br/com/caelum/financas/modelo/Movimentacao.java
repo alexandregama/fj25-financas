@@ -2,6 +2,7 @@ package br.com.caelum.financas.modelo;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,8 +34,13 @@ public class Movimentacao {
 	@Temporal(value = TemporalType.DATE)
 	private Calendar data;
 	
-	@Column(name = "data_criacao") //Se nao usarmos @Temporal é salvo o DateTime por padrão
+	@Column(name = "data_criacao") //Se nao usarmos @Temporal é salvo o DateTime por padrão com o tipo Calendar
 	private Calendar dataCricao = Calendar.getInstance();
+
+	@Temporal(value = TemporalType.TIMESTAMP)
+//	@Temporal(value = TemporalType.TIME) Com o tipo Date podemos usar o Time
+	@Column(name = "data_vencimento") //Se nao usarmos @Temporal é salvo o DateTime por padrão com o tipo Date
+	private Date dataVencimento = new Date();
 
 	@Enumerated(value = EnumType.STRING)
 	@Column(name = "tipo_movimentacao")
@@ -45,10 +51,11 @@ public class Movimentacao {
 	private TipoAtendimento tipoAtendimento;
 	
 	public Movimentacao(Long id, String descricao, TipoMovimentacao tipoMovimentacao,
-			TipoAtendimento tipoAtendimento, BigDecimal valor, Calendar data) {
+			TipoAtendimento tipoAtendimento, BigDecimal valor, Calendar data, Date dataVencimento) {
 		if (id != null) {
 			this.id = id;
 		}
+		this.dataVencimento = dataVencimento;
 		this.data = data;
 		this.valor = valor;
 		this.descricao = descricao;
