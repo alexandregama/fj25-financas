@@ -5,7 +5,13 @@ import javax.persistence.EntityManager;
 import br.com.caelum.financas.infra.JPAUtil;
 import br.com.caelum.financas.modelo.Conta;
 
-public class TestaTransient {
+/*
+ 
+ Neste teste persistimos um objeto com o mesmo manager mas com transacoes diferentes
+ 
+ */
+
+public class TestaTransientComDuasTransactions {
 
 	public static void main(String[] args) {
 		EntityManager manager = new JPAUtil().getEntityManager();
