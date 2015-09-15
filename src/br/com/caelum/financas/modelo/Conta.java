@@ -22,6 +22,12 @@ public class Conta {
 	@Column(name = "agencia", nullable = false)
 	private String agencia;
 
+	public Conta(String titular, String numero, String agencia) {
+		this.titular = titular;
+		this.numero = numero;
+		this.agencia = agencia;
+	}
+
 	@Override
 	public String toString() {
 		return "Conta [id=" + id + ", titular=" + titular + ", numero="
