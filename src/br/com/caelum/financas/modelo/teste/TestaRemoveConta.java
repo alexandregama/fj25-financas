@@ -1,9 +1,10 @@
-package br.com.caelum.financas.modelo;
+package br.com.caelum.financas.modelo.teste;
 
 import javax.persistence.EntityManager;
 
 import br.com.caelum.financas.dao.ContaDao;
 import br.com.caelum.financas.infra.JPAUtil;
+import br.com.caelum.financas.modelo.Conta;
 
 public class TestaRemoveConta {
 
