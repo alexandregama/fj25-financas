@@ -1,7 +1,6 @@
 package br.com.caelum.financas.modelo;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,7 +13,7 @@ import javax.persistence.Table;
  */
 
 @Table(name = "Usuario")
-@Entity
+//@Entity //esta comentado pois gera excecao
 public class Usuario {
 
 	//Esta Sequence seria para Postgres e Oracle
