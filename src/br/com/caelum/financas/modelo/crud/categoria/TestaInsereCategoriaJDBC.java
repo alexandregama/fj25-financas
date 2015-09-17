@@ -11,7 +11,9 @@ public class TestaInsereCategoriaJDBC {
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/controlefinancas", "root", "");
 		
-		PreparedStatement stmt = con.prepareStatement("insert into Categoria (id, nome) values (2, 'Poupanca')");
+		PreparedStatement stmt = con.prepareStatement("insert into Categoria (id, nome) values (?, ?)");
+		stmt.setLong(1, 4l);
+		stmt.setString(2, "Conta corrente");
 		stmt.execute();
 		
 		stmt.close();
