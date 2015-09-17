@@ -5,7 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Table(name = "Conta", schema = "controlefinancas") //Por default o schema é o nome do banco de dados
 @Entity
 public class Conta {
 
