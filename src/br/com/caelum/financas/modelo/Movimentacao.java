@@ -8,9 +8,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,7 +24,7 @@ public class Movimentacao {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private Long id; //BigInt no banco de dados
 	
 	@Column(name = "descricao", length = 100)
 	private String descricao;
@@ -49,6 +52,10 @@ public class Movimentacao {
 	@Enumerated(value = EnumType.ORDINAL) //valor default
 	@Column(name = "tipo_atendimento")
 	private TipoAtendimento tipoAtendimento;
+	
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "conta_id", foreignKey = @ForeignKey(name = "fk_mov_conta")) //Este nome da coluna é o default neste caso
+	private Conta conta;
 	
 	public Movimentacao(Long id, String descricao, TipoMovimentacao tipoMovimentacao,
 			TipoAtendimento tipoAtendimento, BigDecimal valor, Calendar data, Date dataVencimento) {
@@ -104,6 +111,14 @@ public class Movimentacao {
 
 	public Calendar getDataCricao() {
 		return dataCricao;
+	}
+
+	public Conta getConta() {
+		return conta;
+	}
+
+	public void setConta(Conta conta) {
+		this.conta = conta;
 	}
 	
 }
