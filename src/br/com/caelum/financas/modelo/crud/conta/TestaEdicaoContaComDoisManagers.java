@@ -5,21 +5,17 @@ import javax.persistence.EntityManager;
 import br.com.caelum.financas.infra.JPAUtil;
 import br.com.caelum.financas.modelo.Conta;
 
-public class TestaEdicaoConta {
+public class TestaEdicaoContaComDoisManagers {
 
 	public static void main(String[] args) {
-		Conta novaConta = new Conta("Alexandre Gama", "1234567", "123");
-		
 		EntityManager manager = new JPAUtil().getEntityManager();
+		Conta conta = new Conta("Limaaaa", "11111", "22222");
 		manager.getTransaction().begin();
-		manager.persist(novaConta);
-		
-		Conta conta = manager.find(Conta.class, novaConta.getId());
-		conta.setTitular("Gama");
-		manager.merge(conta);
-		conta.setTitular("Gaminha");
-		
+		Conta conta2 = manager.merge(conta);
+		System.out.println(conta2);
+		conta.setTitular("Liminha");
 		manager.getTransaction().commit();
+		
 		manager.close();
 	}
 	
